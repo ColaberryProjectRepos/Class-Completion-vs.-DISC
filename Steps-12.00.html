@@ -1,0 +1,91 @@
+
+Create Dax Measures
+12
+<div><h4><b><span style="line-height: 107%;">Creating the following measure by typing in the DAX
+calculation click a new measure and write the DAX formula, here is the DAX
+formula what you use for this dashboard. You can copy and paste. </span></b></h4>
+
+<ul><li><b><span lang="FR" style="line-height: 107%;">Avenged&nbsp;Dominance Score </span><span lang="FR" style="line-height: 107%;">= AVERAGE(DISC_ClassScores[Dominance])</span><span style="line-height: 107%;"><o:p></o:p></span></b></li></ul>
+
+<ul><li><b><span lang="FR" style="line-height: 107%;">Avenged&nbsp;Influencer Score </span><span lang="FR" style="line-height: 107%;">= AVERAGE(DISC_ClassScores[Influencer])</span><span style="line-height: 107%;"><o:p></o:p></span></b></li></ul>
+
+<ul><li><b><span style="line-height: 107%;">Average Steadiness Score </span><span style="line-height: 107%;">=
+AVERAGE(DISC_ClassScores[Steadiness])<o:p></o:p></span></b></li></ul>
+
+<ul><li><b><span style="line-height: 107%;">Average Compliance Score </span><span style="line-height: 107%;">=
+AVERAGE(DISC_ClassScores[Compliance])<o:p></o:p></span></b></li></ul>
+
+<ul><li style="margin-bottom: 0in; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b>Total Student =
+COUNT(DISC_ClassScores[UserID])<o:p></o:p></b></li></ul>
+
+<p class="MsoNormal" style="margin-bottom: 0in; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b>&nbsp;</b></p>
+
+<ul><li style="margin-bottom: 0in; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b>Class Batch = VAR
+StringPart =&nbsp; (SEARCH("-",
+DISC_ClassScores [ClassName])) VAR StringText =
+RIGHT(DISC_ClassScores[ClassName], LEN(DISC_ClassScores[ClassName]) -
+StringPart) RETURN StringText<o:p></o:p></b></li></ul>
+
+<ul><li style="margin-bottom: 0in; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b>ClasssCompletionStatus =
+IF(DISC_ClassScores[ClassCompleted] = 1,
+"ClassCompleted","ClassInComplete")<o:p></o:p></b></li></ul>
+
+<p class="MsoNormal" style="margin-bottom: 0in; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b>&nbsp;</b></p>
+
+<ul><li style="margin-bottom: 0in; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b>Success Rate = AVERAGE(
+(DISC_ClassScores[ClassCompleted]))<o:p></o:p></b></li></ul>
+
+<p class="MsoNormal" style="margin-bottom: 0in; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b>&nbsp;</b></p>
+
+<h4 style="margin-bottom: 0in; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b>&nbsp; Creating
+Indicators by adding calculation measure</b></h4>
+
+<p class="MsoNormal" style="margin-bottom: 0in; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b>&nbsp;</b></p>
+
+<ul><li style="margin-bottom: 0in; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b>indicator_D =
+SWITCH(TRUE(), [%Change_D]&lt;0,&nbsp;UNICHAR(9660),
+UNICHAR(9650))</b></li></ul>
+
+<ul><li style="margin-bottom: 0in; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b>indicator_I =
+SWITCH(TRUE(), [%Change_I]&lt;0,&nbsp;UNICHAR(9660), UNICHAR(9650))</b></li></ul>
+
+<p class="MsoNormal" style="margin-bottom: 0in; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b>&nbsp;</b></p>
+
+<ul><li style="margin-bottom: 0in; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b>indicator_S =
+SWITCH(TRUE(), [%Change_S]&lt;0,&nbsp;UNICHAR(9660),
+UNICHAR(9650))</b></li></ul>
+
+<p class="MsoNormal" style="margin-bottom: 0in; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b>&nbsp;</b></p>
+
+<ul><li style="margin-bottom: 0in; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b>indicator_C =
+SWITCH(TRUE(), [%Change_C]&lt;0,&nbsp;UNICHAR(9660),
+UNICHAR(9650))</b></li></ul>
+
+<p class="MsoNormal" style="margin-bottom: 0in; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b>&nbsp;</b></p>
+
+<h4 style="margin-bottom: 0in; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b>Next step: creating percentage change to DISC </b></h4>
+
+<p class="MsoNormal" style="margin-bottom: 0in; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b>&nbsp;</b></p>
+
+<ul><li style="margin-bottom: 0in; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b>%Change_I = DIVIDE([.Starting I],[.Ending
+I])-1</b></li></ul>
+
+<p class="MsoNormal" style="margin-bottom: 0in; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b>&nbsp;</b></p>
+
+<ul><li style="margin-bottom: 0in; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b>%Change_S =&nbsp;DIVIDE([.Starting S],[.Ending
+S])-1</b></li></ul>
+
+<p class="MsoNormal" style="margin-bottom: 0in; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b>&nbsp;</b></p>
+
+<ul><li style="margin-bottom: 0in; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b>%Change_D = DIVIDE([.Starting D],[.Ending
+D])-1</b></li></ul>
+
+<p class="MsoNormal" style="margin-bottom: 0in; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b>&nbsp;</b></p>
+
+<ul><li style="margin-bottom: 0in; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b>%Change_C =&nbsp;DIVIDE([.Starting C],[.Ending
+C])-1</b></li><li style="margin-bottom: 0in; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b style="letter-spacing: 0.3px;">.Ending C=CALCULATE([AverageComplianceScore],ALL(DISC_ClassScores[ClasssCompletionStatus]))</b></li><li style="margin-bottom: 0in; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><div style="line-height: 18px;"><b><br>.Ending I=CALCULATE([AverageInfluencerScore],ALL(DISC_ClassScores[ClasssCompletionStatus]))</b></div><div style="line-height: 18px;"><b><br></b></div><div style="line-height: 18px;"><div style="line-height: 18px;"><b>.Ending S=CALCULATE([AverageSteadinessScore],ALL(DISC_ClassScores[ClasssCompletionStatus]))</b></div><div style="line-height: 18px;"><b><br></b></div></div><div style="line-height: 18px;"><div style="line-height: 18px;"><div style="line-height: 18px;"><b>.Ending D=CALCULATE([AverageDominanceScore],ALL(DISC_ClassScores[ClasssCompletionStatus]))</b></div><div style="line-height: 18px;"><b><br></b></div><div style="line-height: 18px;"><div style="line-height: 18px;"><b>.Starting D = CALCULATE([Average Dominance Score],ALLSELECTED())</b></div><div style="line-height: 18px;"><b><br></b></div><div style="line-height: 18px;"><b>.Starting I = CALCULATE([Average Influencer Score],ALLSELECTED())</b></div><div style="line-height: 18px;"><b><br></b></div><div style="line-height: 18px;"><div style="line-height: 18px;"><b>.Starting S = CALCULATE([Average Steadiness Score],ALLSELECTED())</b></div><div style="line-height: 18px;"><b><br></b></div><div style="line-height: 18px;"><div style="line-height: 18px;"><b>.Starting C = CALCULATE([Average Compliance Score],ALLSELECTED())</b></div></div></div></div></div></div></li></ul>
+
+<p class="MsoNormal" style="margin-bottom: 0in; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b>&nbsp;</b></p></div><p><span style="line-height: 107%;"><b><br></b></span></p><p><span style="line-height: 107%;"><b><br></b></span></p><p><span style="line-height: 107%;"><b><br></b></span></p>
+
+<p>https://www.youtube.com/watch?v=61ohblk1Lm0</p>
+
